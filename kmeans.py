@@ -41,7 +41,7 @@ def k_means(data: Iterable[Point], k:int=2, iterations:int=10) -> List[Point]:
     'Return k-centroids for the data'
     data = list(data)
     centroids = sample(data, k)
-    for i in range(iterations):
+    for _ in range(iterations):
         labeled = assign_data(centroids, data)
         centroids = compute_centroids(labeled.values())
     return centroids

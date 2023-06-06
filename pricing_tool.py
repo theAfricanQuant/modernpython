@@ -14,8 +14,8 @@ class PriceRange:
     def midpoint(self):
         return (self.low + self.high) / 2
 
-    def __repr__(s):
-        return f'{s.__class__.__name__}({s.kind!r}, {s.symbol!r}, {s.low!r}, {s.high!r})'
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.kind!r}, {self.symbol!r}, {self.low!r}, {self.high!r})'
 
 if __name__ == '__main__':
     from pprint import pprint

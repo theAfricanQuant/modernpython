@@ -19,23 +19,19 @@ def cum_binom(n, r, ph):
 print(cum_binom(7, 5, 0.60))
 
 def trial():
-    nh = 0
-    for i in range(7):
-        nh += random() < 0.60
+    nh = sum(random() < 0.60 for _ in range(7))
     return nh >= 5
 
-cases = 0
-for i in range(10000):
-    cases += trial()
+cases = sum(trial() for _ in range(10000))
 print(cases / 10000.0)
 
-trial = lambda : sum(random() < 0.60 for i in range(7)) >= 5
-print(sum(trial() for i in range(10000)) / 10000.0)
+trial = lambda: sum(random() < 0.60 for _ in range(7)) >= 5
+print(sum(trial() for _ in range(10000)) / 10000.0)
 
 # Probability of the median of 5 samples being in the
 # middle two quartiles of the population
-trial = lambda :  2500 <= sorted(randrange(10000) for i in range(5))[2] < 7500
-print(sum(trial() for i in range(10000)) / 10000.0)    # compare with the beta distribution
+trial = lambda: 2500 <= sorted(randrange(10000) for _ in range(5))[2] < 7500
+print(sum(trial() for _ in range(10000)) / 10000.0)
 
 # An exact permutation text
 # Hypothesis testing
@@ -50,7 +46,7 @@ obs_diff = mean(drug) - mean(placebo)
 comb = drug + placebo
 
 cases = 0
-for i in range(10000):
+for _ in range(10000):
     shuffle(comb)
     new_diff = mean(comb[:len(drug)]) - mean(comb[len(drug):])
     cases += new_diff >= obs_diff

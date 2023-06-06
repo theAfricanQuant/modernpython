@@ -35,7 +35,7 @@ user_posts = defaultdict(deque)     # type: DefaultDict[User, Deque[Post]]
 hashtag_index = defaultdict(deque)  # type: DefaultDict[HashTag, Deque[Post]]
 following = defaultdict(set)        # type: DefaultDict[User, Set[User]]
 followers = defaultdict(set)        # type: DefaultDict[User, Set[User]]
-user_info = dict()                  # type: Dict[User, UserInfo]
+user_info = {}
 
 hashtag_pattern = re.compile(r'[#@]\w+')
 

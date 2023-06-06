@@ -34,17 +34,14 @@ def check_credentials() -> None:
 
 def get_logged_in_user() -> Optional[User]:
     token = request.get_cookie('token', secret=secret)
-    if token is not None:
-        return logged_in_users.get(token)
-    return None
+    return logged_in_users.get(token) if token is not None else None
 
 @post('/postmessage')
 def post_message() -> None:
     user = get_logged_in_user()
     if user is None:
         return template('login', null=None)
-    text = request.forms.get('text', '')
-    if text:
+    if text := request.forms.get('text', ''):
         pubsub.post_message(user, text)
     return show_main_page(user)
 
